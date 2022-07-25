@@ -1,0 +1,58 @@
+/* Given a list of non-negative integers and a target sum, find a pair of numbers that sums to the target sum.
+
+Example:
+
+var pair = findPairForSum([3, 34, 4, 12, 5, 2], 9);
+console.log(pair); // --> [4, 5] */
+
+function findPairForSum(nums, target){
+
+  var pair = [];
+
+// Iterate twice over the nums array, adding the first number to each subsequent number in the array
+  for (var i = 0; i < nums.length; i++){
+    for (var j = i + 1; j < nums.length; j++){
+      var sum = nums[i] + nums[j];
+      if (sum === target){
+        pair.push(nums[i], nums[j]);
+      }
+    }
+  
+  //if the sum is equal to the target, return the pair, otherwise do nothing
+
+
+}
+  return pair;
+  
+}
+
+
+
+//ASSERTION FUNCTION
+function assertArraysEqual(actual, expected, testName){
+  var sameValues = true;
+  var sameLength = actual.length === expected.length;
+  for (var i = 0; i < expected.length; i++){
+    if (expected[i] !== actual[i]){
+      sameValues = false;
+      break;
+    }
+  }
+  if (sameLength && sameValues){
+    console.log("Passed");
+  } else {
+    console.log("Failed [" + testName + "] Expected " + expected + ", but got " + actual);
+  }
+}
+
+
+
+//TESTS
+
+var actual1 = findPairForSum([3, 34, 4, 12, 5, 2], 9);
+var expected1 = [4, 5];
+assertArraysEqual(actual1, expected1, "Should return the pair of numbers in the array that add up to the target");
+
+var actual2 = findPairForSum([1, 7, 13, 9, 23, 17, 33], 11);
+var expected2 = [];
+assertArraysEqual(actual2, expected2, "Should return an empty array because no pair of numbers adds up to the target");
