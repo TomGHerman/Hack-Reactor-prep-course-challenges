@@ -1,0 +1,43 @@
+/*
+You will be given an array that contains two strings. Your job is to create a function that will take those two strings and transpose them, so that the strings go from top to bottom instead of left to right.
+
+e.g. transposeTwoStrings(['Hello','World']);
+
+should return:
+H W  
+e o  
+l r  
+l l  
+o d
+*/
+
+//Function
+function transposeTwoStrings(arrayInput){
+  var firstString = arrayInput[0];
+  var secondString = arrayInput[1];
+
+  var longerString;
+
+  if (firstString.length > secondString.length){
+    longerString = firstString;
+  } else {
+    longerString = secondString;
+  }
+
+  var transposedString = "";
+
+  for (var i = 0; i < longerString.length; i++){
+  var firstCharacter = firstString[i] || " ";
+  var secondCharacter = secondString[i] || " ";
+
+  transposedString += firstCharacter + " " + secondCharacter + "\n";
+    
+  }
+
+
+  return transposedString;
+  }
+  
+
+//Tests
+console.log(transposeTwoStrings(['Hello','World']));
