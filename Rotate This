@@ -1,0 +1,38 @@
+/* Is one string a rotated version of another?
+
+For example:
+String 1: 'hello world'
+String 2: 'orldhello w'
+
+Extra hint: (click the drop down to ROT7 to see hint)
+
+If you double the string, you'll be able to find another string inside the doubled string using familiar String methods.
+
+Doubled string: 'hello worldhello world'
+Search w/in it: '       orldhello w    ' */
+
+function rotatedString(string1, string2){
+  //create a new string variable, where string 1 is doubled
+  string1 += string1;
+ 
+  //search for string 2 in the doubled string 1
+  if (string1.indexOf(string2) !== -1){
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+function assertEqual(actual, expected, testName){
+  if (actual === expected){
+    console.log("Passed");
+  } else {
+    console.log("Failed [" + testName + "] Expected " + expected + ", but got " + actual);
+  }
+}
+var string1Actual = rotatedString('hello world', 'orldhello w');
+assertEqual(string1Actual, true, "Yes, string2 is a rotated version of string1");
+
+var string3Actual = rotatedString('hello world', 'cat food');
+assertEqual(string3Actual, false, "No, string 4 is not a rotated version of string 3");
