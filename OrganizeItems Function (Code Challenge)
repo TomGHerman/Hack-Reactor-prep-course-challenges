@@ -1,0 +1,56 @@
+function organizeItems(items){
+
+// Shorten and consolidate the item list objects by applying "($)" to those relevant item names:
+  
+  var itemListWithSale = [];
+
+  for (var i = 0; i < items.length; i++){
+
+    var itemDetails = {};
+    
+    if (items[i].onSale === true){
+    itemDetails.category = items[i].category;
+    itemDetails.itemName = items[i].itemName + "($)";
+    itemListWithSale.push(itemDetails);
+    } else {
+    itemDetails.category = items[i].category;
+    itemDetails.itemName = items[i].itemName;
+    itemListWithSale.push(itemDetails);
+    }
+  }
+
+// Create object container, iterate over the item list and return complete object with items organized by category inside
+
+  var organizedItems = {}
+
+  for (var j = 0; j < itemListWithSale.length; j++){
+    if (organizedItems[itemListWithSale[j].category] === undefined){
+      organizedItems[itemListWithSale[j].category] = [];
+    }
+      organizedItems[itemListWithSale[j].category].push(itemListWithSale[j].itemName);
+  }
+  console.log(organizedItems);
+}
+
+var itemData = [
+  { category: 'fruit',  itemName: 'apple', onSale: false },
+  { category: 'canned', itemName: 'beans', onSale: false },
+  { category: 'canned', itemName: 'corn',  onSale: true  },
+  { category: 'frozen', itemName: 'pizza', onSale: false },
+  { category: 'fruit',  itemName: 'melon', onSale: true  },
+  { category: 'canned', itemName: 'soup',  onSale: false },
+];
+
+  organizeItems(itemData);
+
+
+
+/* Output should look like this:
+
+{
+  fruit:  ['apple', 'melon($)'],
+  canned: ['beans', 'corn($)', 'soup'],
+  frozen: ['pizza']
+};
+
+*/
