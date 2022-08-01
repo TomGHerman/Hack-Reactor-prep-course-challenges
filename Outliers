@@ -1,0 +1,50 @@
+function detectOutlierValue(string){
+  //Iterate over the string
+  var numbers = string.split(" ");
+  var evenNumbers = [];
+  var oddNumbers = [];
+
+  for (var i = 0; i < numbers.length; i++){
+    var currentNum = Number(numbers[i]);
+    if (currentNum % 2 === 0){
+      evenNumbers.push({
+        value: currentNum,
+        index: i + 1
+      })
+    } else {
+      oddNumbers.push({
+        value: currentNum,
+        index: i + 1
+      })
+    }
+  }
+  
+  if (oddNumbers.length === 1){
+    return oddNumbers[0].index;
+  } else {
+    return evenNumbers[0].index;
+  }
+
+  
+}
+
+//Assertion Function
+function assertEqual(actual, expected, testName){
+  if (actual === expected){
+    console.log("passed");
+  } else {
+    console.log("Failed [" + testName + "] Expected " + expected + ", but got " + actual);
+  }
+}
+
+//Tests
+
+var string1 = "2 4 7 8 10";
+var actual1 = detectOutlierValue(string1);
+var expected1 = 3;
+assertEqual(actual1, expected1, "should return the index (1-indexed) of the odd outlier value");
+
+var string2 = "1 10 1 1";
+var actual2 = detectOutlierValue(string2);
+var expected2 = 2;
+assertEqual(actual2, expected2, "should return the index (1-indexed) of the even outlier value");
